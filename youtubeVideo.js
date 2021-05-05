@@ -201,6 +201,10 @@ export class youtubeVideoBox extends videoBox {
 
     }
 
+    constructor(link) {
+        super(link);
+    }
+
     downloadThumbnail(thumbnail) {
         return new Promise((resolve) => {
             fetch(thumbnail, { mode: 'no-cors' })
@@ -208,6 +212,17 @@ export class youtubeVideoBox extends videoBox {
                     resolve();
                 })
         })
+    }
+
+    startLoading() {
+        this.loadingWrapper = document.createElement("div");
+        this.loadingWrapper.classList.add("loading-wrapper");
+        this.loadingWrapper.textContent = "loading...";
+        this.wrapper.appendChild(this.loadingWrapper);
+    }
+
+    endLoading() {
+        this.loadingWrapper.remove();
     }
 
     showData(data) {
