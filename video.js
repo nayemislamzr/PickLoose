@@ -15,6 +15,7 @@ export class videoBox {
         </div>
     </div>    
     `
+    static dropDownMenu;
 
     constructor(link) {
 
@@ -48,6 +49,16 @@ export class videoBox {
         }
     }
 
+    share() {
+        let shareOption = this.wrapper.querySelector("div.shareSec-option");
+
+        if (videoBox.dropDownMenu != null) {
+            videoBox.dropDownMenu.style.display = "none";
+        }
+        videoBox.dropDownMenu = shareOption;
+        shareOption.style.display = "block";
+    }
+
     delete() {
         this.wrapper.remove();
     }
@@ -64,14 +75,18 @@ export class videoBox {
     }
 
     eventListener() {
+
         let loveIcon = this.wrapper.querySelector("img#love");
         let playlistIcon = this.wrapper.querySelector("img#playlist");
         let deleteIcon = this.wrapper.querySelector("img#remove");
+        let shareIcon = this.wrapper.querySelector("img#share");
         let reloadIcon = this.wrapper.querySelector("div#reload");
 
         loveIcon.addEventListener("click", () => { this.giveLove(loveIcon) })
 
         playlistIcon.addEventListener("click", () => { this.setPaylist(playlistIcon) })
+
+        shareIcon.addEventListener("click", () => { this.share() });
 
         deleteIcon.addEventListener("click", () => { this.delete() })
 

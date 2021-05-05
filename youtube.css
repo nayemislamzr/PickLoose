@@ -22,7 +22,7 @@ body {
 .video-box {
     display: grid;
     position: relative;
-    background-color: rgba(203, 246, 253, 0.3);
+    background-color: rgb(222, 241, 244);
     grid-template-columns: max-content auto;
     grid-gap: 24px;
     margin-bottom: 10px;
@@ -232,6 +232,37 @@ body {
     height: 20px;
     width: 20px;
     padding: 5px;
+}
+
+.shareSec {
+    position: relative;
+}
+
+.shareSec-option {
+    content: "";
+    display: none;
+    position: absolute;
+    height: max-content;
+    z-index: 1;
+    width: 145px;
+    background-color: #f6e7eb;
+    box-shadow: 0px 0px 5px 0.1px hotpink;
+}
+
+.share-method {
+    border-bottom: 1px solid #e192ac;
+    padding: 12px;
+    color: #606571;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.share-method:last-child {
+    border-bottom: 0px;
+}
+
+.share-method:hover {
+    background-color: pink;
 }
 
 .pref-icon:hover {

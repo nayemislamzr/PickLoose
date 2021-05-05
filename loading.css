@@ -43,6 +43,15 @@
     overflow: hidden;
 }
 
+.loading-thumbnail-wrapper,
+.loading-channel,
+.loading-title,
+.loading-preference,
+.loading-stats-wrapper {
+    opacity: 50%;
+    animation: opacity-loading 2.5s infinite;
+}
+
 .loading-thumbnail-wrapper::before,
 .loading-title::before,
 .loading-channel::before,
@@ -56,6 +65,12 @@
     transform: translateX(-100%);
     transform: skewX(10deg);
     animation: loading 2.5s infinite;
+}
+
+@keyframes opacity-loading {
+    100% {
+        opacity: 100%;
+    }
 }
 
 @keyframes loading {

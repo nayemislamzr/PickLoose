@@ -81,6 +81,11 @@ export class youtubeVideoBox extends videoBox {
                 </div>
                 <div class="shareSec">
                     <img class="pref-icon" id="share" src="icons/share.png">
+                    <div class="shareSec-option">
+                        <div class="share-method" id="link">Copy link</div>
+                        <div class="share-method" id="facebook">Share on Facebook</div>
+                        <div class="share-method" id="discord">Share on Discord</div>
+                    </div>
                 </div>
                 <div class="removeSec">
                     <img class="pref-icon" id="remove" src="icons/delete.svg">
