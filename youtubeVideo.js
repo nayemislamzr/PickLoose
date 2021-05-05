@@ -215,9 +215,7 @@ export class youtubeVideoBox extends videoBox {
     }
 
     startLoading() {
-        this.loadingWrapper = document.createElement("div");
-        this.loadingWrapper.classList.add("loading-wrapper");
-        this.loadingWrapper.textContent = "loading...";
+        this.loadingWrapper = new DOMParser().parseFromString(youtubeVideoBox.loadingTemplate, "text/html").children[0];
         this.wrapper.appendChild(this.loadingWrapper);
     }
 

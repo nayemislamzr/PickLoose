@@ -1,6 +1,21 @@
 import { DataRequest } from './request.js'
 
 export class videoBox {
+
+    static loadingTemplate = `
+    <div class="video-box">
+    <div class="loading-thumbnail-wrapper">
+
+        </div>
+        <div class="video-info-wrapper">
+            <div class="loading-title"></div>
+            <div class="loading-channel"></div>
+            <div class="loading-stats-wrapper"></div>
+            <div class="loading-preference"></div>
+        </div>
+    </div>    
+    `
+
     constructor(link) {
 
         this.link = link;
