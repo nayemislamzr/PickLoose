@@ -231,7 +231,6 @@ export class youtubeVideoBox extends videoBox {
     showData(data) {
 
         this.data = data;
-        data.id = data["video"]["id"];
         let videoNode = new DOMParser().parseFromString(youtubeVideoBox.videoTemplate, "text/html").children[0];
 
         const videoId = data["video"]["id"];

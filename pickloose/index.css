@@ -7,6 +7,19 @@ a {
     text-decoration: none;
 }
 
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+ ::-webkit-scrollbar-thumb {
+    background-color: rgb(242 78 106);
+    position: relative;
+}
+
 .body-wrapper {
     display: grid;
     grid-template-columns: 63px auto;
@@ -126,7 +139,7 @@ h1#title {
     justify-content: space-between;
     background: #edeff0;
     position: sticky;
-    top: 0px;
+    top: -1px;
     z-index: 1;
     padding-top: 9px;
     padding-bottom: 9px;
@@ -165,7 +178,7 @@ h1#title {
 #facebook>img:nth-child(1) {
     height: 27px;
     width: 27px;
-    padding-top: 4px;
+    padding-top: 2px;
     padding-left: 0.5px;
     position: relative;
     top: 1.5px;
@@ -186,10 +199,11 @@ input#search {
     height: 34.2px;
     margin-top: 3.6px;
     width: 276.3px;
-    border: 0.9px solid gray;
+    border: 0px;
     padding-left: 18px;
     font-size: 16.2px;
     font-weight: lighter;
+    box-shadow: 1px 1px 3px 0px grey, -1px 1px 3px 0px grey;
 }
 
 button#submit {
@@ -251,6 +265,7 @@ button#submit {
     padding-bottom: 6.3px;
     margin-left: 13.5px;
     margin-right: 9px;
+    box-shadow: 1.8px 0.8px 6px 0px lightgrey;
 }
 
 #option {
@@ -270,7 +285,7 @@ button#submit {
 }
 
 #option:hover {
-    background-color: lightpink;
+    background-color: lightgray;
 }
 
 #reload {
@@ -290,7 +305,7 @@ button#submit {
 }
 
 #reload:hover {
-    background-color: lightpink;
+    background-color: lightgray;
 }
 
 .timeVideoDuration {

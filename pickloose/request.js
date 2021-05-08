@@ -3,13 +3,9 @@ import { fetchDataFromYoutube } from './fetchYoutube.js'
 export class DataRequest {
     constructor(url) {
         this.url = url;
-        try {
-            this.platform = this.getPlatForm();
-            this.id = this.extractID();
-            this.fetchProtocol = this.initFetchData();
-        } catch (errorMsg) {
-            console.error(errorMsg);
-        }
+        this.platform = this.getPlatForm();
+        this.id = this.extractID();
+        this.fetchProtocol = this.initFetchData();
     }
 
     doFetch() {

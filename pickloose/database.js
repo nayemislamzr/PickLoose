@@ -11,10 +11,10 @@ export class DataBase {
             base.addEventListener("upgradeneeded", (e) => {
                 let database = e.target.result;
                 let stores = database.objectStoreNames;
-                console.log(tables);
                 tables.forEach((table) => {
                     if (!stores.contains(table)) {
-                        database.createObjectStore(table, { keyPath: key });
+                        let objectStore = database.createObjectStore(table, { keyPath: key });
+                        objectStore.createIndex("time", "time", { unique: false });
                     }
                 })
             })

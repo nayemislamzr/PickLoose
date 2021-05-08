@@ -1,0 +1,16 @@
+{
+    "manifest_version": 2,
+    "name": "youtube-link-getter",
+    "version": "0.1",
+    "description": "I gets youtube links",
+    "browser_action": {},
+    "background": {
+        "page": "background.html",
+        "persistent": false
+    },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "storage"
+    ]
+}
