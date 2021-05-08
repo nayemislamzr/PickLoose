@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="loading.css">
+    <!-- <script defer type="module" src="Main.js"></script> -->
+    <script defer type="module" src="videoPage.js"></script>
+</head>
+
+<body>
+    <div class="body-wrapper">
+        <div class="nav-bar-wrapper">
+            <div class="nav-bar">
+                <div class="nav" id="userid">
+                    <div class="nav-select-indicator"></div>
+                    <img class="nav-logo" src="icon/id.svg">
+                </div>
+                <div class="nav-option-wrapper">
+                    <div class="nav" id="video">
+                        <div class="nav-select-indicator"></div>
+                        <img class="nav-logo" id="" src="icon/video.svg">
+                    </div>
+                    <div class="nav" id="article">
+                        <div class="nav-select-indicator"></div>
+                        <img class="nav-logo" id="article" src="icon/textarticle.svg">
+                    </div>
+                    <div class="nav" id="setting">
+                        <div class="nav-select-indicator"></div>
+                        <img class="nav-logo" id="setting" src="icon/setting.svg">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="video-page-wrapper">
+            <div id="header">
+                <div class="head-title">
+                    <img class="title-logo" src="icon/play (1).svg">
+                    <h1 id="title">Video History</h1>
+                </div>
+            </div>
+            <div id="body">
+                <div class="querybar">
+                    <div class="platform-wrapper">
+                        <div class="platform" id="youtube">
+                            <img class="plat-logo" src="icon/youtube (1).svg">
+                        </div>
+                        <div class="platform" id="twitch">
+                            <img class="plat-logo" src="icon/twitch.svg">
+                        </div>
+                        <div class="platform" id="facebook">
+                            <img class="plat-logo" src="icon/facebook.svg">
+                        </div>
+                    </div>
+
+                    <div class="search-wrapper">
+                        <input type="text" id="search" placeholder="search video">
+                        <button id="submit">
+                            <img class="plat-logo" src="icon/search.svg">
+                        </button>
+                    </div>
+
+                    <div class="selection-wrapper">
+                        <div class="play-option" id="all-playlist">
+                            <img class="play-option-icon" src="icon/play.svg">
+                            <span class="play-option-text">
+                                playlist
+                            </span>
+                        </div>
+                        <div class="play-option" id="all-catergory">
+                            <img class="play-option-icon" src="icon/play.svg">
+                            <span class="play-option-text">
+                            Category
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="history-box">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
