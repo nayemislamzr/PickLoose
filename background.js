@@ -6,7 +6,6 @@ function initRequest(url) {
         new DataRequest(url)
             .doFetch()
             .then((data) => {
-                data.time = new Date();
                 new DataBase("youtube")
                     .update(["history"], data);
             })
@@ -26,7 +25,7 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
 
 chrome.browserAction.onClicked.addListener(tab => {
     chrome.windows.create({
-        url: chrome.runtime.getURL("./pickloose/index.html"),
+        url: chrome.runtime.getURL("./pickloose/category.html"),
         type: "popup",
         focused: true,
         height: 700,

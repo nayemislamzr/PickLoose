@@ -1,0 +1,69 @@
+body {
+    background: lightgray;
+}
+
+.slide-video-wrapper {
+    background: white;
+    padding: 5px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 3px 0px gray;
+    height: 280px;
+}
+
+.small-thumbnail {
+    height: 130px;
+    width: 215px;
+}
+
+.slide-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-bottom: 1px solid lightgray;
+}
+
+.video-slide {
+    display: grid;
+    grid-template-columns: repeat(4, 230px);
+    overflow-x: auto;
+    grid-gap: 10px;
+    padding: 5px 10px;
+    padding-top: 10px;
+}
+
+.category {
+    font-size: 21px;
+    font-family: Ubuntu;
+    font-weight: lighter;
+}
+
+#seeall {
+    color: #f22869;
+    font-family: Ubuntu;
+}
+
+.small-video-box {
+    width: min-content;
+    background: #f6eafb;
+    padding: 6px;
+    box-shadow: 0.3px 0.3px 2px 0px gray;
+}
+
+.small-thumbnail-wrapper {
+    margin-bottom: 6px;
+}
+
+.video-info {
+    font-family: Ubuntu;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.channel-info {
+    font-size: 13px;
+    color: gray;
+    font-family: Ubuntu;
+}

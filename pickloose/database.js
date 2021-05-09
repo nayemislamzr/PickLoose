@@ -15,6 +15,7 @@ export class DataBase {
                     if (!stores.contains(table)) {
                         let objectStore = database.createObjectStore(table, { keyPath: key });
                         objectStore.createIndex("time", "time", { unique: false });
+                        objectStore.createIndex("category", ["category", "time"], { unique: false });
                     }
                 })
             })

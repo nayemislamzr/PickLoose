@@ -13,6 +13,8 @@ function YouTubeVideoFetch(url) {
                 const statistics = data["statistics"];
                 let videoInformation = {
                     id: (data["id"]),
+                    time: new Date(),
+                    category: snippet["categoryId"],
                     video: {
                         title: (snippet["title"] || ""),
                         id: (data["id"] || ""),
