@@ -19,11 +19,11 @@ async function initRequest(url) {
         let data = await new DataRequest(url).doFetch();
         let version = await getDataBaseVersion();
         let db = new DataBase("youtube", version);
-        let presentInStore = await db.hasThisStore("history");
+        let presentInStore = await db.hasThisStore("music");
         if (!presentInStore) {
             db.version += 1;
         }
-        db.update("history", data);
+        db.update("music", data);
 
     } catch (error) {
         console.log(error);

@@ -1,16 +1,12 @@
 export class DataBase {
 
-    static saveDataBaseInfo(name, version, store) {
-        chrome.storage.local.get(null, (response) => {
-            let stores = typeof response.stores === Array ? response.stores : [];
-            stores.push(store);
-            let dabaseObject = {
-                name: name,
-                version: version,
-                stores: stores
-            }
-            chrome.storage.local.set(dabaseObject);
-        })
+    static saveDataBaseInfo(name, version, stores) {
+        let dabaseObject = {
+            name: name,
+            version: version,
+            stores: stores
+        }
+        chrome.storage.local.set(dabaseObject);
     }
 
     static openStore(db, storeName, mode) {
@@ -19,6 +15,15 @@ export class DataBase {
                 .objectStore(storeName);
             resolve(objectStore);
         })
+    }
+
+    static DOMListStringToNormalArray(list, newStore) {
+        let resultArray = new Array();
+        for (let index = 0; index != list.length; index++) {
+            resultArray.push(list.item(index));
+        }
+        resultArray.push(newStore);
+        return resultArray;
     }
 
     constructor(name, version) {
@@ -46,7 +51,8 @@ export class DataBase {
                 let database = e.target.result;
                 let stores = database.objectStoreNames;
 
-                DataBase.saveDataBaseInfo(this.name, this.version, "history");
+                let newStores = DataBase.DOMListStringToNormalArray(stores, table);
+                DataBase.saveDataBaseInfo(this.name, this.version, newStores);
 
                 if (table !== null && !stores.contains(table)) {
                     let objectStore = database.createObjectStore(table, { keyPath: key });
@@ -59,7 +65,7 @@ export class DataBase {
                 resolve(e.target.result);
             })
             base.addEventListener("error", (e) => {
-                console.log(error);
+                console.log(e.target.error);
                 reject(e.target.error);
             })
         });

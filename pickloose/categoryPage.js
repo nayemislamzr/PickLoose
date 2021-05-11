@@ -12,7 +12,7 @@ import { SlideVideo } from './slideVideo.js'
         .then((db) => {
             let Playlist = db.objectStoreNames;
             for (let playlistIndex = 0; playlistIndex < Playlist.length; playlistIndex++) {
-                new SlideVideo("25", Playlist.item(playlistIndex), "youtube")
+                new SlideVideo("22", Playlist.item(playlistIndex), "youtube")
                     .doFetch();
             }
         })
