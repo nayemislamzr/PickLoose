@@ -10,7 +10,7 @@ body {
     margin-top: 10px;
     margin-bottom: 10px;
     box-shadow: 1px 1px 3px 0px gray;
-    height: 280px;
+    height: 270px;
 }
 
 .small-thumbnail {
@@ -38,13 +38,14 @@ body {
     display: flex;
     grid-gap: 10px;
     justify-content: space-between;
+    align-items: center;
     font-size: 17px;
     font-family: Ubuntu;
     text-shadow: 1.2px 1.3px lightgrey;
 }
 
 .category-icon {
-    height: 20px;
+    height: 26px;
 }
 
 .category-title {
@@ -54,7 +55,8 @@ body {
 }
 
 #seeall {
-    color: #f22869;
+    font-size: 14px;
+    text-shadow: 1.2px 1.3px lightgrey;
     font-family: Ubuntu;
 }
 
@@ -72,7 +74,8 @@ body {
     font-family: Ubuntu;
     font-size: 14px;
     font-weight: 300;
-    height: 40px;
+    height: 31px;
+    line-height: 1.1;
     overflow: hidden;
 }
 
@@ -82,5 +85,5 @@ body {
     font-family: Ubuntu;
     margin-top: 5px;
     position: relative;
-    top: 5px;
+    top: 2px;
 }

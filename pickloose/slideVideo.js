@@ -19,17 +19,15 @@ export class SlideVideo {
 
     static getCategoryInfo(categoryId) {
         switch (categoryId) {
-            case "0":
-                return "";
             case "1":
                 return {
                     title: "Film & Animation",
-                    icon: ""
+                    icon: "icon/film.svg"
                 }
             case "2":
                 return {
                     title: "Autos & Vehicles",
-                    icon: ""
+                    icon: "icon/car.svg"
                 }
             case "10":
                 return {
@@ -39,17 +37,17 @@ export class SlideVideo {
             case "15":
                 return {
                     title: "Pets & Animals",
-                    icon: ""
+                    icon: "icon/pawprint.svg"
                 }
             case "17":
                 return {
                     title: "Sports",
-                    icon: ""
+                    icon: "icon/football.svg"
                 }
             case "19":
                 return {
                     title: "Travel & Events",
-                    icon: ""
+                    icon: "icon/airplane.svg"
                 }
             case "20":
                 return {
@@ -59,12 +57,12 @@ export class SlideVideo {
             case "22":
                 return {
                     title: "People & Blogs",
-                    icon: ""
+                    icon: "icon/video(1).svg"
                 }
             case "23":
                 return {
                     title: "Comedy",
-                    icon: ""
+                    icon: "icon/cinema.svg"
                 }
             case "24":
                 return {
@@ -74,12 +72,12 @@ export class SlideVideo {
             case "25":
                 return {
                     title: "News & Politics",
-                    icon: ""
+                    icon: "icon/newspaper.svg"
                 }
             case "26":
                 return {
                     title: "Howto & Style",
-                    icon: "icon/newspaper.svg"
+                    icon: "icon/guide.svg"
                 }
             case "27":
                 return {
@@ -89,15 +87,18 @@ export class SlideVideo {
             case "28":
                 return {
                     title: "Science & Technology",
-                    icon: ""
+                    icon: "icon/atom.svg"
                 }
             case "29":
                 return {
                     title: "Nonprofits & Activism",
-                    icon: ""
+                    icon: "icon/soin.svg"
                 }
             default:
-                return categoryId;
+                return {
+                    title: categoryId,
+                    icon: ""
+                }
         }
     }
 
@@ -106,8 +107,7 @@ export class SlideVideo {
         let categoryTitle = categoryWrapper.querySelector("div.category-title");
         let categoryInfo = SlideVideo.getCategoryInfo(categoryCode);
 
-        let defaultIcon = "";
-        categoryIcon.src = categoryInfo.icon !== undefined ? categoryInfo.icon : "";
+        categoryIcon.src = categoryInfo.icon;
         categoryTitle.textContent = categoryInfo.title;
     }
 
