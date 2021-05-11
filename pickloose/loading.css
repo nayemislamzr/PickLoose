@@ -1,8 +1,8 @@
 .loading-thumbnail-wrapper {
     display: block;
-    height: 136.5px;
-    width: 240px;
-    margin-left: 5px;
+    height: calc(136.5px*0.9);
+    width: calc(240px*0.9);
+    margin-left: calc(5px*0.9);
     background-color: #bcbcc0;
     position: relative;
     overflow: hidden;
@@ -10,8 +10,8 @@
 
 .loading-title {
     display: block;
-    height: 16px;
-    width: 500px;
+    height: calc(16px*0.9);
+    width: calc(500px*0.9);
     background-color: #bcbcc0;
     position: relative;
     overflow: hidden;
@@ -19,8 +19,8 @@
 
 .loading-channel {
     display: block;
-    height: 16px;
-    width: 100px;
+    height: calc(16px*0.9);
+    width: calc(100px*0.9);
     background-color: #bcbcc0;
     position: relative;
     overflow: hidden;
@@ -28,8 +28,8 @@
 
 .loading-stats-wrapper {
     display: block;
-    height: 16px;
-    width: 200px;
+    height: calc(16px*0.9);
+    width: calc(200px*0.9);
     background-color: #bcbcc0;
     position: relative;
     overflow: hidden;
@@ -37,8 +37,8 @@
 
 .loading-preference {
     display: block;
-    height: 16px;
-    width: 140px;
+    height: calc(16px*0.9);
+    width: calc(140px*0.9);
     background-color: #bcbcc0;
     position: relative;
     overflow: hidden;

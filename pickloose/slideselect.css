@@ -29,15 +29,28 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 230px);
     overflow-x: auto;
-    grid-gap: 10px;
+    grid-gap: 15px;
     padding: 5px 10px;
     padding-top: 10px;
 }
 
 .category {
-    font-size: 21px;
+    display: flex;
+    grid-gap: 10px;
+    justify-content: space-between;
+    font-size: 17px;
     font-family: Ubuntu;
-    font-weight: lighter;
+    text-shadow: 1.2px 1.3px lightgrey;
+}
+
+.category-icon {
+    height: 20px;
+}
+
+.category-title {
+    font-size: 17px;
+    font-family: Ubuntu;
+    text-shadow: 1.2px 1.3px lightgrey;
 }
 
 #seeall {
@@ -47,9 +60,8 @@ body {
 
 .small-video-box {
     width: min-content;
-    background: #f6eafb;
     padding: 6px;
-    box-shadow: 0.3px 0.3px 2px 0px gray;
+    box-shadow: 0px 0px 2.5px 1px lightgrey;
 }
 
 .small-thumbnail-wrapper {
@@ -60,10 +72,15 @@ body {
     font-family: Ubuntu;
     font-size: 14px;
     font-weight: 300;
+    height: 40px;
+    overflow: hidden;
 }
 
 .channel-info {
     font-size: 13px;
     color: gray;
     font-family: Ubuntu;
+    margin-top: 5px;
+    position: relative;
+    top: 5px;
 }

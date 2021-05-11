@@ -30,7 +30,7 @@ import { getDataBaseVersion } from '../background.js'
                 let cursor = e.target.result;
                 if (cursor) {
                     let video = cursor.value;
-                    new youtubeVideoBox()
+                    new youtubeVideoBox(storeName)
                         .showData(video);
                     cursor.continue();
                 } else {

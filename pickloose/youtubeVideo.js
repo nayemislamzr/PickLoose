@@ -1,5 +1,7 @@
 import { videoBox } from './video.js'
 import { DataRequest } from './request.js'
+import { DataBase } from './database.js';
+import { getDataBaseVersion } from '../background.js'
 
 export class youtubeVideoBox extends videoBox {
 
@@ -211,8 +213,15 @@ export class youtubeVideoBox extends videoBox {
 
     }
 
-    constructor() {
+    async update(data) {
+        let version = await getDataBaseVersion();
+        new DataBase("youtube", version)
+            .update(this.store, data);
+    }
+
+    constructor(store = "history") {
         super();
+        this.store = store;
     }
 
     downloadThumbnail(thumbnail) {
@@ -241,6 +250,7 @@ export class youtubeVideoBox extends videoBox {
         let request = new DataRequest(url);
         request.doFetch()
             .then((data) => {
+                this.update(data);
                 this.showData(data);
             })
     }

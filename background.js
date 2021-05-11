@@ -19,11 +19,11 @@ async function initRequest(url) {
         let data = await new DataRequest(url).doFetch();
         let version = await getDataBaseVersion();
         let db = new DataBase("youtube", version);
-        let presentInStore = await db.hasThisStore("music");
+        let presentInStore = await db.hasThisStore("history");
         if (!presentInStore) {
             db.version += 1;
         }
-        db.update("music", data);
+        db.update("history", data);
 
     } catch (error) {
         console.log(error);
@@ -49,6 +49,6 @@ chrome.browserAction.onClicked.addListener(tab => {
         type: "popup",
         focused: true,
         height: 700,
-        width: 1080
+        width: 1090
     });
 });
