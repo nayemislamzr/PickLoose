@@ -1,31 +1,16 @@
 export class DataBase {
 
-    constructor(name, version = 3) {
-        this.name = name;
-        this.version = version;
-    }
-
-    open(tables = new Array(), key = 'id') {
-        return new Promise((resolve, reject) => {
-            let base = indexedDB.open(this.name, this.version);
-            base.addEventListener("upgradeneeded", (e) => {
-                let database = e.target.result;
-                let stores = database.objectStoreNames;
-                tables.forEach((table) => {
-                    if (!stores.contains(table)) {
-                        let objectStore = database.createObjectStore(table, { keyPath: key });
-                        objectStore.createIndex("time", "time", { unique: false });
-                        objectStore.createIndex("category", ["category", "time"], { unique: false });
-                    }
-                })
-            })
-            base.addEventListener("success", (e) => {
-                resolve(e.target.result);
-            })
-            base.addEventListener("error", (e) => {
-                reject(e.target.error);
-            })
-        });
+    static saveDataBaseInfo(name, version, store) {
+        chrome.storage.local.get(null, (response) => {
+            let stores = typeof response.stores === Array ? response.stores : [];
+            stores.push(store);
+            let dabaseObject = {
+                name: name,
+                version: version,
+                stores: stores
+            }
+            chrome.storage.local.set(dabaseObject);
+        })
     }
 
     static openStore(db, storeName, mode) {
@@ -34,6 +19,50 @@ export class DataBase {
                 .objectStore(storeName);
             resolve(objectStore);
         })
+    }
+
+    constructor(name, version) {
+        this.name = name;
+        this.version = version;
+    }
+
+    hasThisStore(storeName) {
+        return new Promise((resolve) => {
+            chrome.storage.local.get(null, (response) => {
+                if (response !== undefined && response.stores !== undefined && response.stores.includes(storeName)) {
+                    resolve(true);
+                } else {
+                    resolve(false);
+                }
+            })
+        })
+    }
+
+    open(table = null, key = 'id') {
+        return new Promise((resolve, reject) => {
+            let base = indexedDB.open(this.name, this.version);
+
+            base.addEventListener("upgradeneeded", (e) => {
+                let database = e.target.result;
+                let stores = database.objectStoreNames;
+
+                DataBase.saveDataBaseInfo(this.name, this.version, "history");
+
+                if (table !== null && !stores.contains(table)) {
+                    let objectStore = database.createObjectStore(table, { keyPath: key });
+                    objectStore.createIndex("time", "time", { unique: false });
+                    objectStore.createIndex("category", ["category", "time"], { unique: false });
+                }
+            })
+            base.addEventListener("success", (e) => {
+                console.log("database successfully opened", e.target.result.version);
+                resolve(e.target.result);
+            })
+            base.addEventListener("error", (e) => {
+                console.log(error);
+                reject(e.target.error);
+            })
+        });
     }
 
     insert(store, data) {
@@ -106,6 +135,7 @@ export class DataBase {
             })
             .catch((error) => {
                 console.log(error);
+                throw new Error(error);
             })
 
     }

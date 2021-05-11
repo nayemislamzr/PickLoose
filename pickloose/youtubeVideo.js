@@ -1,4 +1,5 @@
 import { videoBox } from './video.js'
+import { DataRequest } from './request.js'
 
 export class youtubeVideoBox extends videoBox {
 
@@ -42,31 +43,31 @@ export class youtubeVideoBox extends videoBox {
             </div>
             <div class="stats-wrapper">
                 <div class="views-section">
-                    <img class="stat-icon" id="view-icon" src="icons/eye.svg">
+                    <img class="stat-icon" id="view-icon" src="icons/visibility.svg">
                     <span class="counter" id="views"> 
 
                     </span>
                 </div>
                 <div class="likes-section">
-                    <img class="stat-icon" id="like-icon" src="icons/like(3).svg">
+                    <img class="stat-icon" id="like-icon" src="icons/like.svg">
                     <span class="counter" id="likes">
 
                     </span>
                 </div>
                 <div class="dislikes-section">
-                    <img class="stat-icon" id="dislike-icon" src="icons/unlike.svg">
+                    <img class="stat-icon" id="dislike-icon" src="icons/thumb-down.svg">
                     <span class="counter" id="dislikes">
 
                     </span>
                 </div>
                 <div class="comments-section">
-                    <img class="stat-icon" id="comment-icon" src="icons/comments.svg">
+                    <img class="stat-icon" id="comment-icon" src="icons/message.svg">
                     <span class="counter" id="comments">
 
                     </span>
                 </div>
                 <div class="duration-section">
-                    <img class="stat-icon" id="duration-icon" src="icons/duration.svg">
+                    <img class="stat-icon" id="duration-icon" src="icons/clock.svg">
                     <span class="counter" id="duration">
 
                     </span>
@@ -77,10 +78,10 @@ export class youtubeVideoBox extends videoBox {
                     <img class="pref-icon" id="love" src="icons/heart (1).svg">
                 </div>
                 <div class="playlistSec">
-                    <img class="pref-icon" id="playlist" src="icons/playlist (1).svg">
+                    <img class="pref-icon" id="playlist" src="icons/playlist(1).svg">
                 </div>
                 <div class="shareSec">
-                    <img class="pref-icon" id="share" src="icons/share.png">
+                    <img class="pref-icon" id="share" src="icons/share.svg">
                     <div class="shareSec-option">
                         <div class="share-method" id="link">Copy link</div>
                         <div class="share-method" id="facebook">Share on Facebook</div>
@@ -88,12 +89,16 @@ export class youtubeVideoBox extends videoBox {
                     </div>
                 </div>
                 <div class="removeSec">
-                    <img class="pref-icon" id="remove" src="icons/delete.svg">
+                    <img class="pref-icon" id="remove" src="icons/trash.svg">
                 </div>
             </div>
             </div>
             </div>
     `)
+
+    static createUrl(id) {
+        return `https://www.youtube.com/watch?v=${id}`;
+    }
 
     static getCategory(categoryId) {
         switch (categoryId) {
@@ -206,8 +211,8 @@ export class youtubeVideoBox extends videoBox {
 
     }
 
-    constructor(link) {
-        super(link);
+    constructor() {
+        super();
     }
 
     downloadThumbnail(thumbnail) {
@@ -228,23 +233,35 @@ export class youtubeVideoBox extends videoBox {
         this.loadingWrapper.remove();
     }
 
+    reload() {
+        let videoBox = this.wrapper.querySelector("div.video-box");
+        let url = youtubeVideoBox.createUrl(this.data.id);
+        videoBox.remove();
+        this.startLoading();
+        let request = new DataRequest(url);
+        request.doFetch()
+            .then((data) => {
+                this.showData(data);
+            })
+    }
+
     showData(data) {
 
         this.data = data;
         let videoNode = new DOMParser().parseFromString(youtubeVideoBox.videoTemplate, "text/html").children[0];
 
-        const videoId = data["video"]["id"];
-        const channelId = data["channel"]["id"];
-        const thumbnail = data["video"]["thumbnails"]["medium"]["url"];
-        const title = data['video']['title'];
-        const channelName = data['channel']['name'];
-        const categoryId = data['channel']['categoryId'];
-        const uploadTime = new Date(data['video']['publishedAt']);
-        const likesInDigit = data['video']['likes'];
-        const dislikesInDigit = data['video']['unlikes'];
-        const commentsInDigit = data['video']['comments'];
-        const viewsInDigit = data['video']['views'];
-        const nonFormattedDuration = data['video']['duration'];
+        const videoId = this.data["video"]["id"];
+        const channelId = this.data["channel"]["id"];
+        const thumbnail = this.data["video"]["thumbnails"]["medium"]["url"];
+        const title = this.data['video']['title'];
+        const channelName = this.data['channel']['name'];
+        const categoryId = this.data['channel']['categoryId'];
+        const uploadTime = new Date(this.data['video']['publishedAt']);
+        const likesInDigit = this.data['video']['likes'];
+        const dislikesInDigit = this.data['video']['unlikes'];
+        const commentsInDigit = this.data['video']['comments'];
+        const viewsInDigit = this.data['video']['views'];
+        const nonFormattedDuration = this.data['video']['duration'];
 
         let category = youtubeVideoBox.getCategory(categoryId);
         const formattedLikes = youtubeVideoBox.getFormattedInformation(likesInDigit);

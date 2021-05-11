@@ -42,3 +42,14 @@ export function switchPlatform() {
     })
 
 }
+
+export function getCategoryOrPlaylist() {
+    const selectionWrapper = document.querySelector("div.selection-wrapper");
+    const category = selectionWrapper.querySelector("div#all-catergory");
+
+    category.addEventListener("click", () => {
+        let url = chrome.runtime.getURL("pickloose/category.html");
+        window.open(url, "_self");
+    })
+
+}

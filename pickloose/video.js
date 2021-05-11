@@ -1,5 +1,3 @@
-import { DataRequest } from './request.js'
-
 export class videoBox {
 
     static loadingTemplate = `
@@ -17,9 +15,7 @@ export class videoBox {
     `
     static dropDownMenu;
 
-    constructor(link) {
-
-        this.link = link;
+    constructor() {
         this.wrapper = document.createElement("div");
         this.wrapper.classList.add("video-box-wrapper");
         document.querySelector("div.history-box").appendChild(this.wrapper);
@@ -61,17 +57,6 @@ export class videoBox {
 
     delete() {
         this.wrapper.remove();
-    }
-
-    reload() {
-        let videoBox = this.wrapper.querySelector("div.video-box");
-        videoBox.remove();
-        this.startLoading();
-        let request = new DataRequest(this.link);
-        request.doFetch()
-            .then((data) => {
-                this.showData(data);
-            })
     }
 
     eventListener() {
