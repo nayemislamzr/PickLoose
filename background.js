@@ -1,6 +1,14 @@
 import { DataRequest } from './pickloose/request.js'
 import { DataBase } from './pickloose/database.js'
+import { Firebase } from './firebase.js'
 
+/*
+    Gets the version of database which was previously saved 
+    in chrome local storage
+
+    @param {} - No parameter needed for now 
+    @return - the version of the indexed db database
+*/
 export function getDataBaseVersion() {
     return new Promise((resolve) => {
         chrome.storage.local.get(null, (response) => {
@@ -14,9 +22,24 @@ export function getDataBaseVersion() {
     })
 }
 
+/*
+    Fetches data with url then saves it into both offline(indexed db)
+    & online (firebase realtime database)
+
+    @param {url} - URL of the fethable link
+    @returl {} - Nothing
+*/
 async function initRequest(url) {
     try {
+        const databaseName = "youtube";
+        const storeName = "history";
+
         let data = await new DataRequest(url).doFetch();
+        Firebase.update(`${databaseName}/${storeName}/${data.id}`, {
+            id: data.id,
+            playlist: storeName,
+            time: new Date()
+        });
         let version = await getDataBaseVersion();
         let db = new DataBase("youtube", version);
         let presentInStore = await db.hasThisStore("history");
@@ -31,6 +54,9 @@ async function initRequest(url) {
 
 }
 
+/*
+    Gets the URL from BROWSER when in active tab - link is changed
+*/
 let lastinvoked = undefined;
 chrome.tabs.onActivated.addListener((activeInfo) => {
     chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
@@ -42,7 +68,9 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
     })
 })
 
-
+/*
+    Renders extension window in popup window
+*/
 chrome.browserAction.onClicked.addListener(tab => {
     chrome.windows.create({
         url: chrome.runtime.getURL("./pickloose/index.html"),

@@ -1,3 +1,67 @@
+/*
+    class DataBase - Class for indexed DB operations on promises
+        #saveDataBaseInfo 
+            - saves database inforamtion to the chrome local storage
+            
+            @param {name} - Name of the database
+            @param {version} - Version of the database
+            @return {stores} - All the stores(Playlist) in the database
+        
+        #openStore
+            - opens given store in the database 
+
+            @param {db} - Indexed DB instance
+            @param {storeName} - name of the store to open
+            @param {mode} - the database opening mode
+                      |--- readonly - can only be read
+                      |--- readwrite - can do both read and write
+        
+        #DOMListStringToNormalArray
+            - convers DOM List string to iterable and data insetable array
+
+            @param {list} - DOMListString
+            @param {newStore} - The store name to added in the database
+            @return {resultArray} - iterable and data insetable array
+                                    with newly added store
+        
+        #constructor
+            - DataBase constructor
+
+            @param {name} - Name of the indexed DB database
+            @param {version} - Version of the indexed DB database
+        
+        #hasThisStore
+            - Checks in the chrome local storage if the given store is 
+                found or not
+            
+            @param {storeName} - name of the store to check
+        
+        #open 
+            - Opens database & resolves promise with database instance
+
+            *{onupgradeneeded} - event listener only invokes when database version
+                                gets higher . 
+                                Here implemented for adding new 
+                                stores in this database
+
+            *{onsuccess} - event listener invokes when onupgrandeneeded is passed
+                            resolves the promise with database instance
+
+            *{onerror} - error listener
+                        gets the error while onenning database
+                        Normally gets error when database version is tried with 
+                        lower.
+
+            @param {store} - name of the store
+            @param {key} - primary key for Indexed DB database
+
+        #insert, delete , update , get
+            - inserts ,deltes , updates , gets data from the database
+            @param {store} - name of the store
+            @param {key} - primary key for Indexed DB database
+            @param {data} - data stored in the database
+
+*/
 export class DataBase {
 
     static saveDataBaseInfo(name, version, stores) {
@@ -43,7 +107,7 @@ export class DataBase {
         })
     }
 
-    open(table = null, key = 'id') {
+    open(store = null, key = 'id') {
         return new Promise((resolve, reject) => {
             let base = indexedDB.open(this.name, this.version);
 
@@ -51,11 +115,11 @@ export class DataBase {
                 let database = e.target.result;
                 let stores = database.objectStoreNames;
 
-                let newStores = DataBase.DOMListStringToNormalArray(stores, table);
+                let newStores = DataBase.DOMListStringToNormalArray(stores, store);
                 DataBase.saveDataBaseInfo(this.name, this.version, newStores);
 
-                if (table !== null && !stores.contains(table)) {
-                    let objectStore = database.createObjectStore(table, { keyPath: key });
+                if (store !== null && !stores.contains(store)) {
+                    let objectStore = database.createObjectStore(store, { keyPath: key });
                     objectStore.createIndex("time", "time", { unique: false });
                     objectStore.createIndex("category", ["category", "time"], { unique: false });
                 }

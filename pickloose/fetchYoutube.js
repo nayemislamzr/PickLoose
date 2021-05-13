@@ -1,3 +1,9 @@
+/*
+    Fetches youtube video inforamtion with given URL
+
+    @param {url} - The URL to be fetched
+    @return {videoinformation} - resolves promise when data is fetched 
+*/
 function YouTubeVideoFetch(url) {
     return new Promise((resolve, reject) => {
         fetch(url)

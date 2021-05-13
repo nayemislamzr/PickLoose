@@ -4,9 +4,9 @@
     "version": "0.1",
     "description": "I gets youtube links",
     "browser_action": {},
+    "content_security_policy": "script-src 'self' https://cdn.firebase.com https://*.firebaseio.com https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js https://www.gstatic.com/firebasejs/8.6.1/firebase-database.js https://www.gstatic.com/firebasejs/8.6.1/firebase-analytics.js; object-src 'self'",
     "background": {
-        "page": "background.html",
-        "persistent": false
+        "page": "background.html"
     },
     "permissions": [
         "tabs",

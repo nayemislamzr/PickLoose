@@ -2,6 +2,13 @@ import { DataBase } from './database.js';
 import { navBar, switchPlatform } from './eventListener.js'
 import { SlideVideo } from './slideVideo.js'
 
+/*
+    Functionalilty :
+        * Gets all stores from the database (Playlist)
+        * Checks for the associated category in the index
+        * After indexing the data is served to SlideVideo class
+        * Slide video shows the video data in slide form
+*/
 (() => {
     navBar();
     switchPlatform();
