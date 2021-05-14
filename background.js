@@ -1,6 +1,6 @@
 import { DataRequest } from './pickloose/request.js'
 import { DataBase } from './pickloose/database.js'
-import { Firebase } from './firebase.js'
+import { Firebase } from './firebase/firebase.js'
 
 /*
     Gets the version of database which was previously saved 

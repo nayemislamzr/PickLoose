@@ -8,8 +8,8 @@ export class DataRequest {
         this.fetchProtocol = this.initFetchData();
     }
 
-    doFetch() {
-        return this.fetchProtocol.sendRequest();
+    doFetch(time = new Date()) {
+        return this.fetchProtocol.sendRequest(time);
     }
 
     getPlatForm() {

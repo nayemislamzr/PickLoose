@@ -4,7 +4,7 @@
     @param {url} - The URL to be fetched
     @return {videoinformation} - resolves promise when data is fetched 
 */
-function YouTubeVideoFetch(url) {
+function YouTubeVideoFetch(url, time) {
     return new Promise((resolve, reject) => {
         fetch(url)
             .then(response => {
@@ -19,7 +19,7 @@ function YouTubeVideoFetch(url) {
                 const statistics = data["statistics"];
                 let videoInformation = {
                     id: (data["id"]),
-                    time: new Date(),
+                    time: time,
                     category: snippet["categoryId"],
                     video: {
                         title: (snippet["title"] || ""),
@@ -86,8 +86,8 @@ export class fetchDataFromYoutube {
         sends Request & returns it
     */
 
-    sendRequest = function() {
-        return YouTubeVideoFetch(this.requestPayload);
+    sendRequest = function(time) {
+        return YouTubeVideoFetch(this.requestPayload, time);
     }
 
 }

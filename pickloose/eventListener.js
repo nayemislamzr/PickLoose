@@ -48,7 +48,7 @@ export function getCategoryOrPlaylist() {
     const category = selectionWrapper.querySelector("div#all-catergory");
 
     category.addEventListener("click", () => {
-        let url = chrome.runtime.getURL("pickloose/category.html");
+        let url = chrome.runtime.getURL("firebase/test.html");
         window.open(url, "_self");
     })
 
